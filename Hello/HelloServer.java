@@ -6,25 +6,13 @@ import org.omg.PortableServer.*;
 import org.omg.PortableServer.POA;
 
 class HelloImpl extends HelloPOA {
-  private ORB orb;
-
-  public void setORB(ORB orb_val) {
-    orb = orb_val; 
-  }
-    
-  // implement sayHello() method
+  // implement echoString() method
   @Override
-  public String sayHello() {
-    return "\nHello world !!\n";
-  }
-    
-  // implement shutdown() method
-  @Override
-  public void shutdown() {
-    orb.shutdown(false);
+  public String echoString(String mesg) {
+	System.out.println("echoString() called with message "+mesg);
+    return mesg;
   }
 }
-
 
 public class HelloServer {
   public static void main(String args[]) {
@@ -38,7 +26,6 @@ public class HelloServer {
 
       // create servant and register it with the ORB
       HelloImpl helloImpl = new HelloImpl();
-      helloImpl.setORB(orb); 
 
       // get object reference from the servant
       org.omg.CORBA.Object ref = rootpoa.servant_to_reference(helloImpl);

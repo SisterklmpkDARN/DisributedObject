@@ -2,7 +2,6 @@ module HelloApp
 {
   interface Hello
   {
-    string sayHello();
-    oneway void shutdown();
+    string echoString(in string mesg);
   };
 };
